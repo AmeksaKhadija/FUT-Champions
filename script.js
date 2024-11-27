@@ -1,18 +1,19 @@
+const btnCloseModal = document.getElementById('buttonClose');
+
 async function CallAPI() {
     let url = "players.json";
     let fetcher = await fetch(url);
     let json = await fetcher.json();
 
     console.log(json);
-    
+
     let selectedPosition = document.querySelectorAll(".player");
     console.log(selectedPosition);
-    
-    selectedPosition.forEach((selectedPosition)=>{
-        selectedPosition.addEventListener('click', ()=>{
-            displayPlayers(json.players, selectedPosition);
-            // console.log(p);
-            
+
+    selectedPosition.forEach((selectedArea) => {
+        selectedArea.addEventListener('click', () => {
+            console.log(selectedArea);
+            displayPlayers(json.players, selectedArea);
         })
     })
 }
@@ -24,31 +25,40 @@ function displayPlayers(players, selectedPosition) {
     let modalContent = document.querySelector("#players-list");
     modalContent.innerHTML = "";
 
-    players.forEach(player => {
+    let position = selectedPosition.querySelector("#selected-position").innerText.trim();
+
+    let filteredPlayers = players.filter(player => player.position === position);
+
+    filteredPlayers.forEach(player => {
         let playerCard = document.createElement("div");
         playerCard.classList.add("card", "m-2");
         playerCard.style.width = "150px";
 
         playerCard.innerHTML = `
-                             <img src="${player.photo}" alt="${player.name}" class="card-img-top">
-                             <div class="card-body text-center">
-                                 <h6 class="card-title text-warning">${player.rating}</h6>
-                                 <h6 class="card-title text-warning">${player.position}</h6>
-                                 <p class="card-text" style="font-size: 0.8rem; color: rgb(168, 147, 123);">${player.name}</p>
-                             </div>
-                        `;
+            <img src="${player.photo}" alt="${player.name}" class="card-img-top">
+            <div class="card-body text-center">
+                <h6 class="card-title text-warning">${player.rating}</h6>
+                <h6 class="card-title text-warning">${player.position}</h6>
+                <p class="card-text" style="font-size: 0.8rem; color: rgb(168, 147, 123);">${player.name}</p>
+            </div>
+        `;
+        modalContent.appendChild(playerCard);
 
         playerCard.addEventListener("click", () => {
             selectPlayer(player, selectedPosition);
         });
-
-        modalContent.appendChild(playerCard);
     });
+
+    if (filteredPlayers.length === 0) {
+        modalContent.innerHTML = `<p class="text-center text-warning">No players available for this position.</p>`;
+    }
 }
 
 
-function selectPlayer(player,selectedPosition) {
-    
+function selectPlayer(player, selectedPosition) {
+
+    // let modalPlayer = document.getElementById('playerModal');
+
     selectedPosition.innerHTML = "";
 
     selectedPosition.innerHTML = `
@@ -90,5 +100,7 @@ function selectPlayer(player,selectedPosition) {
                             </div>
                         </div>
                     `;
+
+    btnCloseModal.click();
 
 }
