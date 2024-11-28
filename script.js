@@ -1,4 +1,8 @@
 const btnCloseModal = document.getElementById('buttonClose');
+const allPlayers = document.getElementById("players-all");
+// console.log(allPlayers.innerHTML);
+
+
 
 async function CallAPI() {
     let url = "players.json";
@@ -6,16 +10,20 @@ async function CallAPI() {
     let json = await fetcher.json();
 
     console.log(json);
+    console.log(json.players[0]);
 
     let selectedPosition = document.querySelectorAll(".player");
-    console.log(selectedPosition);
+    // console.log(selectedPosition);
 
     selectedPosition.forEach((selectedArea) => {
         selectedArea.addEventListener('click', () => {
             console.log(selectedArea);
             displayPlayers(json.players, selectedArea);
+            
         })
     })
+
+    createDiv(json.players);
 }
 
 CallAPI();
@@ -53,8 +61,6 @@ function displayPlayers(players, selectedPosition) {
         modalContent.innerHTML = `<p class="text-center text-warning">No players available for this position.</p>`;
     }
 }
-
-
 
 function selectPlayer(player, selectedPosition) {
     selectedPosition.innerHTML = "";
@@ -143,4 +149,60 @@ function selectPlayer(player, selectedPosition) {
     }
 
     btnCloseModal.click();
+}
+
+function createDiv(players) {
+    players.forEach(player => {
+        const element = document.createElement('div');
+        element.classList.add("card-full");
+
+        element.innerHTML = `
+            <img src="src/assets/img/badge_ballon_dor.webp" class="first-image" alt="">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <div class="info">
+                            <div class="value">${player.rating}</div>
+                            <div class="position">${player.position}</div>
+                        </div>
+                        <div class="image">
+                            <img src="${player.photo}" alt="${player.name}">
+                        </div>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="name">${player.name}</div>
+                        <div class="stats">
+                            <ul>
+                                ${player.position !== "GK" ? `
+                                    <li><span>PAC</span><span>${player.pace}</span></li>
+                                    <li><span>SHO</span><span>${player.shooting}</span></li>
+                                    <li><span>PAS</span><span>${player.passing}</span></li>
+                                    <li><span>DRI</span><span>${player.dribbling}</span></li>
+                                    <li><span>DEF</span><span>${player.defending}</span></li>
+                                    <li><span>PHY</span><span>${player.physical}</span></li>
+                                ` : `
+                                    <li><span>DIV</span><span>${player.diving}</span></li>
+                                    <li><span>HAN</span><span>${player.handling}</span></li>
+                                    <li><span>KIC</span><span>${player.kicking}</span></li>
+                                    <li><span>REF</span><span>${player.reflexes}</span></li>
+                                    <li><span>SPD</span><span>${player.speed}</span></li>
+                                    <li><span>POS</span><span>${player.positioning}</span></li>
+                                `}
+                            </ul>
+                        </div>
+                        <div class="country-club">
+                            <div class="country">
+                                <img src="${player.flag}" alt="${player.nationality}">
+                            </div>
+                            <div class="club">
+                                <img src="${player.logo}" alt="${player.club}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        allPlayers.appendChild(element);
+    });
 }

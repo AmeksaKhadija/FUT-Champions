@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --main-color: #12f7d6;
+    --dark-color: #292f36;
+    --electric-blue: #0078FF;
+    --neon-purple: #A020F0;
+    --slate-gray: #2F4F4F;
+    --white-color: #FFFFFF;
+    --dark-c: #1A1A1A;
+    --soft-gray: #F5F5F5;
+    --white-smoke: #F8F8F8;
+    --deep-orange: #FF4500;
+    --bright-yellow: #FFD700;
+}
+
+* {
+    color: inherit;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    font-family: "Red Hat Display", sans-serif;
+    background-color: var(--dark-c);
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+hr {
+    border: 0;
+    border-top: 1px dotted #efefef;
+}
+
+.main-title {
+    background-color: var(--dark-c);
+    color: var(--neon-purple);
+}
+
+.main-button,
+.secondary-button {
+    background-color: var(--neon-purple);
+    border: 0.5px solid var(--neon-purple);
+    border-radius: 5px;
+    min-width: fit-content;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.secondary-button {
+    background-color: var(--deep-orange);
+    border-color: var(--deep-orange);
+}
+
+.main-button:hover,
+.secondary-button:hover {
+    border-color: var(--bright-yellow)
+}
+
+/* ----------------- players list ------------------------- */
+
+.players {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 30px;
+}
+
+.players-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 50px;
+}
+
+.players h1 {
+    padding: 30px;
+}
+
+.players .players-main {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    padding: 30px;
+    width: 100%;
+}
+
+.players .players-main .players-all {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: var(--dark-color);
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px 0;
+}
+
+.players .players-main .players-filter {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 20px;
+    background-color: var(--dark-color);
+    padding: 20px;
+    min-width: fit-content;
+    border-radius: 10px;
+
+}
+
+/* ==============   Card   ============== */
+
+.card-full {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 312px;
+    position: relative;
+}
+
+.card-full image {
+    position: relative;
+    width: 200px;
+}
+
+.card {
+    color: var(--white-color);
+    position: absolute;
+    bottom: 13px;
+}
+
+.card .card-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.card .card-top {
+    display: flex;
+    color: #d3cca3;
+    justify-content: flex-start;
+    align-items: start;
+    width: 170px;
+}
+
+.card .card-top .info {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.card .card-top .info .position {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.card .card-top .image img {
+    width: 140px;
+}
+
+.card .card-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.card .card-bottom .name {
+    color: #d3cca3;
+}
+
+.card .card-bottom .stats ul {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.card .card-bottom .stats ul li {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.card .card-bottom .stats ul li span:first-child {
+    font-size: 8px;
+}
+
+
+.card .card-bottom .country-club {
+    display: flex;
+    margin-top: 9px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.card .country img,
+.card .club img {
+    width: 20px;
+}
+
+/* -----------------  MODAL  ------------------ */
+.modal-container {
+  
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s linear;
+}
+
+.modal-container.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.modal {
+    background-color: var(--white-color);
+    width: auto;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.modal h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.modal .one-line {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    gap: 10px;
+}
+
+.modal .one-input-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 6px;
+    font-size: 14px;
+    width: 200px;
+}
+
+.one-input-box label {
+    font-weight: 600px;
+}
+
+.one-input-box .one-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    position: relative;
+}
+
+.one-input i {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    visibility: hidden;
+}
+
+.one-input small {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    visibility: hidden;
+}
+
+.one-input.success input {
+    border-color: #2ecc71;
+}
+
+.one-input.error input {
+    border-color: #e74c3c;
+}
+
+.one-input.success i.fa-circle-check {
+    visibility: visible;
+    color: #2ecc71;
+}
+
+
+.one-input.error i.fa-exclamation {
+    visibility: visible;
+    color: #e74c3c;
+}
+
+.one-input.error small {
+    visibility: visible;
+    color: #e74c3c;
+}
+
+.one-input-box input {
+    border-radius: 4px;
+    border: 1.3px solid rgb(204, 197, 197);
+    width: 100%;
+    height: 20px;
+    padding: 20px 10px;
+    color: black;
+
+}
+
+.one-input-box select {
+    border-radius: 4px;
+    border: 1.5px solid rgb(204, 197, 197);
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+}
+
+.one-input-box input:focus,
+select:focus {
+    border: 1.5px solid rgb(142, 138, 138);
+    outline: none;
+}
+
+.modal .buttons {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+.modal .secondary-button,
+.modal .main-button {
+    width: 160px
+}
+
+/* ----------------button ajouter player ---------------------------- */
+.ajouterPlayer{
+    background-color: rgb(74, 114, 114);
+    padding: 10px;
+    width: 200px;
+    border-radius: 3%;
+    transition: .4s ease;
+}
+
+.ajouterPlayer:hover{
+    transform: translateY(-5px);
+}
