@@ -55,56 +55,92 @@ function displayPlayers(players, selectedPosition) {
 }
 
 
+
 function selectPlayer(player, selectedPosition) {
-
-    // let modalPlayer = document.getElementById('playerModal');
-
     selectedPosition.innerHTML = "";
-    
+
     selectedPosition.classList.remove("player");
     selectedPosition.classList.add("player-content");
 
-    selectedPosition.innerHTML = `
-                        
-                            <div class="d-flex align-items:center justify-content-center">
-                                <span style="position: relative; left: 10%;margin-top: 20%;" style="color: rgb(99, 87, 53);">${player.rating} <span>${player.position}</span></span>
-                                <img src="${player.photo}" alt="${player.name}" style="width: 75px;">
-                            </div>
-                            <div style="font-size: 0.9rem; color: rgb(0, 0, 0);">${player.name}</div>
-                            <div class="player-details">
-                                <div class="stat-row">
-                                    <span class="stat-label">PAC</span>
-                                    <span class="stat-value">${player.pace}</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">SHO</span>
-                                    <span class="stat-value">${player.shooting}</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">PAS</span>
-                                    <span class="stat-value">${player.passing}</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">DRI</span>
-                                    <span class="stat-value">${player.dribbling}</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">DEF</span>
-                                    <span class="stat-value">${player.defending}</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">PHY</span>
-                                    <span class="stat-value">${player.physical}</span>
-                                </div>
-                            </div>
-                            <div class="player-flags">
-                                <img src="${player.flag}" alt="Argentina" class="flag">
-                                <img src="${player.logo}" alt="${player.club}" class="flag">
-                            </div>
-                             <h1 id="selected-position" style="font-size: 1.5rem; margin-top: 20px; display: flex; justify-content: center;">${player.position}</h1>
-                        
-                    `;
+    if (player.position === "GK") {
+        selectedPosition.innerHTML = `
+            <div class="d-flex align-items:center justify-content-center">
+                <span style="position: relative; left: 10%;margin-top: 20%;" style="color: rgb(99, 87, 53);">${player.rating} <span>${player.position}</span></span>
+                <img src="${player.photo}" alt="${player.name}" style="width: 75px;">
+            </div>
+            <div style="font-size: 0.7rem; color: rgb(0, 0, 0);">${player.name}</div>
+            <div class="player-details">
+                <div class="stat-row">
+                    <span class="stat-label">DIV</span>
+                    <span class="stat-value">${player.diving}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">HAN</span>
+                    <span class="stat-value">${player.handling}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">KIC</span>
+                    <span class="stat-value">${player.kicking}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">REF</span>
+                    <span class="stat-value">${player.reflexes}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">SPD</span>
+                    <span class="stat-value">${player.speed}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">POS</span>
+                    <span class="stat-value">${player.positioning}</span>
+                </div>
+            </div>
+            <div class="player-flags">
+                <img src="${player.flag}" alt="Argentina" class="flag">
+                <img src="${player.logo}" alt="${player.club}" class="flag">
+            </div>
+            <h1 id="selected-position" style="font-size: 1.5rem; margin-top: 15px; display: flex; justify-content: center;">${player.position}</h1>
+        `;
+    } else {
+        selectedPosition.innerHTML = `
+            <div class="d-flex align-items:center justify-content-center">
+                <span style="position: relative; left: 10%;margin-top: 20%;" style="color: rgb(99, 87, 53);">${player.rating} <span>${player.position}</span></span>
+                <img src="${player.photo}" alt="${player.name}" style="width: 75px;">
+            </div>
+            <div style="font-size: 0.9rem; color: rgb(0, 0, 0);">${player.name}</div>
+            <div class="player-details">
+                <div class="stat-row">
+                    <span class="stat-label">PAC</span>
+                    <span class="stat-value">${player.pace}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">SHO</span>
+                    <span class="stat-value">${player.shooting}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">PAS</span>
+                    <span class="stat-value">${player.passing}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">DRI</span>
+                    <span class="stat-value">${player.dribbling}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">DEF</span>
+                    <span class="stat-value">${player.defending}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">PHY</span>
+                    <span class="stat-value">${player.physical}</span>
+                </div>
+            </div>
+            <div class="player-flags">
+                <img src="${player.flag}" alt="Argentina" class="flag">
+                <img src="${player.logo}" alt="${player.club}" class="flag">
+            </div>
+            <h1 id="selected-position" style="font-size: 1.5rem; margin-top: 10px; display: flex; justify-content: center;">${player.position}</h1>
+        `;
+    }
 
     btnCloseModal.click();
-
 }
