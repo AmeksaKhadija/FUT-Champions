@@ -400,6 +400,38 @@
         "physical": 84
       },
       {
+        "name": "Leroy Sané",
+        "photo": "https://cdn.sofifa.net/players/222/492/25_120.png",
+        "position": "LM",
+        "nationality": "Germany",
+        "flag": "https://cdn.sofifa.net/flags/de.png",
+        "club": "Bayern Munich",
+        "logo": "https://cdn.sofifa.net/meta/team/503/120.png",
+        "rating": "85",
+        "pace": 90,
+        "shooting": 78,
+        "passing": 80,
+        "dribbling": 86,
+        "defending": 45,
+        "physical": 68
+      },
+      {
+        "name": "Bukayo Saka",
+        "photo": "https://cdn.sofifa.net/players/246/669/25_120.png",
+        "position": "RM",
+        "nationality": "England",
+        "flag": "https://cdn.sofifa.net/flags/gb-eng.png",
+        "club":"Arsenal",
+        "logo": "https://cdn.sofifa.net/meta/team/19/120.png",
+        "rating": "86",
+        "pace": 84,
+        "shooting": 76,
+        "passing": 81,
+        "dribbling": 88,
+        "defending": 60,
+        "physical": 65
+      },  
+      {
         "name": "Gianluigi Donnarumma",
         "photo": "https://cdn.sofifa.net/players/230/621/25_120.png",
         "position": "GK",
