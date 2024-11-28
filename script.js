@@ -60,9 +60,12 @@ function selectPlayer(player, selectedPosition) {
     // let modalPlayer = document.getElementById('playerModal');
 
     selectedPosition.innerHTML = "";
+    
+    selectedPosition.classList.remove("player");
+    selectedPosition.classList.add("player-content");
 
     selectedPosition.innerHTML = `
-                        <div class="player-content">
+                        
                             <div class="d-flex align-items:center justify-content-center">
                                 <span style="position: relative; left: 10%;margin-top: 20%;" style="color: rgb(99, 87, 53);">${player.rating} <span>${player.position}</span></span>
                                 <img src="${player.photo}" alt="${player.name}" style="width: 75px;">
@@ -98,7 +101,8 @@ function selectPlayer(player, selectedPosition) {
                                 <img src="${player.flag}" alt="Argentina" class="flag">
                                 <img src="${player.logo}" alt="${player.club}" class="flag">
                             </div>
-                        </div>
+                             <h1 id="selected-position" style="font-size: 1.5rem; margin-top: 20px; display: flex; justify-content: center;">${player.position}</h1>
+                        
                     `;
 
     btnCloseModal.click();
