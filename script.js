@@ -2,6 +2,7 @@ const btnCloseModal = document.getElementById('buttonClose');
 const allPlayers = document.getElementById("players-all");
 // console.log(allPlayers.innerHTML);
 
+let playersArray = JSON.parse(localStorage.getItem('players')) || [];
 
 
 async function CallAPI() {
@@ -23,7 +24,7 @@ async function CallAPI() {
         })
     })
 
-    createDiv(json.players);
+    createDiv(json.players,playersArray);
 }
 
 CallAPI();
@@ -208,24 +209,20 @@ function createDiv(players) {
 }
 
 
-// Sélectionne les éléments
 const addPlayerButton = document.querySelector('.ajouterPlayer');
 const modal = document.getElementById('customModal');
 const closeModalButton = document.getElementById('closeModal');
 const addPlayerForm = document.getElementById('addPlayerForm');
 const playersAll = document.getElementById('players-all');
 
-// Ouvre le modal
 addPlayerButton.addEventListener('click', () => {
     modal.style.display = 'flex';
 });
 
-// Ferme le modal
 closeModalButton.addEventListener('click', () => {
     modal.style.display = 'none';
 });
 
-// Ferme le modal lorsqu'on clique en dehors
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
         modal.style.display = 'none';
@@ -234,28 +231,81 @@ window.addEventListener('click', (event) => {
 
 // Ajoute un joueur
 addPlayerForm.addEventListener('submit', (event) => {
-    event.preventDefault(); // Empêche le rechargement de la page
+    event.preventDefault();
 
-    // Récupère les données du formulaire
-    const playerName = document.getElementById('playerName').value;
-    const playerAge = document.getElementById('playerAge').value;
-    const playerPosition = document.getElementById('playerPosition').value;
+    const player = {
+        name: document.getElementById('playerName').value,
+        photo: document.getElementById('photo').value,
+        position: document.getElementById('position').value,
+        nationality: document.getElementById('nationality').value,
+        club: document.getElementById('club').value,
+        logo: document.getElementById('logo').value,
+        rating: document.getElementById('rating').value,
+        pace: document.getElementById('pace').value,
+        shooting: document.getElementById('shooting').value,
+        passing: document.getElementById('passing').value,
+        dribbling: document.getElementById('dribbling').value,
+        defending: document.getElementById('defending').value,
+        physical: document.getElementById('physical').value,
+        flag: document.getElementById('flag').value
+    };
 
-    // Crée une carte pour le joueur
+    
     const playerCard = document.createElement('div');
-    playerCard.className = 'player-card';
+    playerCard.classList.add("card-full");
+
     playerCard.innerHTML = `
-        <h3>${playerName}</h3>
-        <p>Age: ${playerAge}</p>
-        <p>Position: ${playerPosition}</p>
-    `;
+            <img src="src/assets/img/badge_ballon_dor.webp" class="first-image" alt="">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <div class="info">
+                            <div class="value">${player.rating}</div>
+                            <div class="position">${player.position}</div>
+                        </div>
+                        <div class="image">
+                            <img src="${player.photo}" alt="${player.name}">
+                        </div>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="name">${player.name}</div>
+                        <div class="stats">
+                            <ul>
+                                ${player.position !== "GK" ? `
+                                    <li><span>PAC</span><span>${player.pace}</span></li>
+                                    <li><span>SHO</span><span>${player.shooting}</span></li>
+                                    <li><span>PAS</span><span>${player.passing}</span></li>
+                                    <li><span>DRI</span><span>${player.dribbling}</span></li>
+                                    <li><span>DEF</span><span>${player.defending}</span></li>
+                                    <li><span>PHY</span><span>${player.physical}</span></li>
+                                ` : `
+                                    <li><span>DIV</span><span>${player.diving}</span></li>
+                                    <li><span>HAN</span><span>${player.handling}</span></li>
+                                    <li><span>KIC</span><span>${player.kicking}</span></li>
+                                    <li><span>REF</span><span>${player.reflexes}</span></li>
+                                    <li><span>SPD</span><span>${player.speed}</span></li>
+                                    <li><span>POS</span><span>${player.positioning}</span></li>
+                                `}
+                            </ul>
+                        </div>
+                        <div class="country-club">
+                            <div class="country">
+                                <img src="${player.flag}" alt="${player.nationality}">
+                            </div>
+                            <div class="club">
+                                <img src="${player.logo}" alt="${player.club}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        allPlayers.appendChild(playerCard);
 
-    // Ajoute la carte à la liste
-    playersAll.appendChild(playerCard);
-
-    // Réinitialise le formulaire
-    addPlayerForm.reset();
-
-    // Ferme le modal
-    modal.style.display = 'none';
+        playersArray.push(player);
+        localStorage.setItem('players', JSON.stringify(playersArray));
+        
+        addPlayerForm.reset();
+        modal.style.display = 'none';
 });
