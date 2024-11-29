@@ -26,7 +26,7 @@
       <div class="modal-content">
         <span class="close-button" id="closeModal">&times;</span>
         <h1>Add Player</h1>
-        <form id="addPlayerForm">
+        <form id="addPlayerForm" onsubmit="return validateForm()">
           <div class="form-group">
             <label for="playerName">Player Name</label>
             <input type="text" id="playerName">
@@ -98,6 +98,8 @@
             <input type="text" id="physical" >
           </div>
           <button type="submit" class="submit-button">Add Player</button>
+          <div id="message" style="color: red;"></div>
+
         </form>
       </div>
     </div>
