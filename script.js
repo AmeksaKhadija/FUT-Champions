@@ -20,11 +20,11 @@ async function CallAPI() {
         selectedArea.addEventListener('click', () => {
             console.log(selectedArea);
             displayPlayers(json.players, selectedArea);
-            
+
         })
     })
 
-    createDiv(json.players,playersArray);
+    createDiv(json.players, playersArray);
 }
 
 CallAPI();
@@ -233,6 +233,10 @@ window.addEventListener('click', (event) => {
 addPlayerForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
+    if (!validateForm()) {
+        return; // Stop if the validation fails
+    }
+
     const player = {
         name: document.getElementById('playerName').value,
         photo: document.getElementById('photo').value,
@@ -250,7 +254,7 @@ addPlayerForm.addEventListener('submit', (event) => {
         flag: document.getElementById('flag').value
     };
 
-    
+
     const playerCard = document.createElement('div');
     playerCard.classList.add("card-full");
 
@@ -300,12 +304,197 @@ addPlayerForm.addEventListener('submit', (event) => {
                 </div>
             </div>
         `;
-        
-        allPlayers.appendChild(playerCard);
 
-        playersArray.push(player);
-        localStorage.setItem('players', JSON.stringify(playersArray));
-        
-        addPlayerForm.reset();
-        modal.style.display = 'none';
+    allPlayers.appendChild(playerCard);
+
+    playersArray.push(player);
+    localStorage.setItem('players', JSON.stringify(playersArray));
+
+    addPlayerForm.reset();
+    modal.style.display = 'none';
 });
+
+
+
+// function validateForm() {
+//     const namePlayer = document.getElementById('playerName').value.trim();
+//     const photoPlayer = document.getElementById('photo').value.trim();
+//     const positionPlayer = document.getElementById('position').value.trim();
+//     const nationalityPlayer = document.getElementById('nationality').value.trim();
+//     const clubPlayer = document.getElementById('club').value.trim();
+//     const logoPlayer = document.getElementById('logo').value.trim();
+//     const ratingPlayer = document.getElementById('rating').value.trim();
+//     const pacePlayer = document.getElementById('pace').value.trim();
+//     const shootingPlayer = document.getElementById('shooting').value.trim();
+//     const passingPlayer = document.getElementById('passing').value.trim();
+//     const dribblingPlayer = document.getElementById('dribbling').value.trim();
+//     const defendingPlayer = document.getElementById('defending').value.trim();
+//     const physicalPlayer = document.getElementById('physical').value.trim();
+//     const flagPlayer = document.getElementById('flag').value.trim();
+
+//     const nameRegex = /^[a-zA-ZÀ-ÿ\s-]{2,30}$/;
+//     const photoRegex = /\/{2}.+?\.(jpg|png|gif)/;
+//     const positionRegex = /^[A-Z]{2}$/;
+//     const numberRegex = /^[0-9]{2}$/;
+
+//     if (!namePlayer.match(nameRegex)) {
+//         document.getElementById('message').textContent = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!photoPlayer.match(photoRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!positionPlayer.match(positionRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!nationalityPlayer.match(nameRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!clubPlayer.match(nameRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!logoPlayer.match(photoRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!ratingPlayer.match(numberRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!pacePlayer.match(numberRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!shootingPlayer.match(numberRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!passingPlayer.match(numberRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!dribblingPlayer.match(numberRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!defendingPlayer.match(numberRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!physicalPlayer.match(numberRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     if (!flagPlayer.match(photoRegex)) {
+//         messageErreur = "Veuillez essayez une autre fois";
+//         return false;
+//     }
+
+//     document.getElementById('message').textContent = "";
+//     return true;
+// }
+
+function validateForm() {
+    const namePlayer = document.getElementById('playerName').value.trim();
+    const photoPlayer = document.getElementById('photo').value.trim();
+    const positionPlayer = document.getElementById('position').value.trim();
+    const nationalityPlayer = document.getElementById('nationality').value.trim();
+    const clubPlayer = document.getElementById('club').value.trim();
+    const logoPlayer = document.getElementById('logo').value.trim();
+    const ratingPlayer = document.getElementById('rating').value.trim();
+    const pacePlayer = document.getElementById('pace').value.trim();
+    const shootingPlayer = document.getElementById('shooting').value.trim();
+    const passingPlayer = document.getElementById('passing').value.trim();
+    const dribblingPlayer = document.getElementById('dribbling').value.trim();
+    const defendingPlayer = document.getElementById('defending').value.trim();
+    const physicalPlayer = document.getElementById('physical').value.trim();
+    const flagPlayer = document.getElementById('flag').value.trim();
+
+    const nameRegex = /^[a-zA-ZÀ-ÿ\s-]{2,30}$/;
+    const photoRegex = /^https?:\/\/.+\.(jpg|png|gif)$/;
+    const positionRegex = /^[A-Z]{2}$/;
+    const numberRegex = /^[0-9]{1,2}$/;
+
+    if (!namePlayer.match(nameRegex)) {
+        document.getElementById('message').textContent = "Name invalide.";
+        return false;
+    }
+    if (!photoPlayer.match(photoRegex)) {
+        document.getElementById('message').textContent = "L'URL de la photo est invalide.";
+        return false;
+    }
+    if (!positionPlayer.match(positionRegex)) {
+        document.getElementById('message').textContent = "Position  invalide.";
+        return false;
+    }
+    if (!nationalityPlayer.match(nameRegex)) {
+        document.getElementById('message').textContent = "Nationalité invalide.";
+        return false;
+    }
+    if (!clubPlayer.match(nameRegex)) {
+        document.getElementById('message').textContent = "Le club est invalide.";
+        return false;
+    }
+    if (!logoPlayer.match(photoRegex)) {
+        document.getElementById('message').textContent = "L'URL du logo est invalide.";
+        return false;
+    }
+    if (!ratingPlayer.match(numberRegex)) {
+        document.getElementById('message').textContent = "Rating invalide.";
+        return false;
+    }
+    if (!pacePlayer.match(numberRegex)) {
+        document.getElementById('message').textContent = "pace invalide.";
+        return false;
+    }
+
+    if (!shootingPlayer.match(numberRegex)) {
+        document.getElementById('message').textContent = "Shooting invalide.";
+        return false;
+    }
+
+    if (!passingPlayer.match(numberRegex)) {
+        document.getElementById('message').textContent = "Passing invalide.";
+        return false;
+    }
+
+    if (!dribblingPlayer.match(numberRegex)) {
+        document.getElementById('message').textContent = "Dribbling invalide.";
+        return false;
+    }
+
+    if (!defendingPlayer.match(numberRegex)) {
+        document.getElementById('message').textContent = "Defending invalide.";
+        return false;
+    }
+
+    if (!physicalPlayer.match(numberRegex)) {
+        document.getElementById('message').textContent = "Physical invalide.";
+        return false;
+    }
+
+    if (!flagPlayer.match(photoRegex)) {
+        document.getElementById('message').textContent = "L'URL du flag est invalide.";
+        return false;
+    }
+
+    document.getElementById('message').textContent = "";
+    return true;
+}
