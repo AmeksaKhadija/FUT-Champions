@@ -191,7 +191,18 @@ hr {
 .ajouterPlayer:hover{
     transform: translateY(-5px);
 }
+/* button de la page precedante */
+.precedant{
+    background-color: rgb(74, 114, 114);
+    padding: 10px;
+    width: 200px;
+    border-radius: 3%;
+    transition: .4s ease;
+}
 
+.precedant:hover{
+    transform: translateY(-5px);
+}
 /* modal de l'ajout  */
 
 /* Styles de base */
@@ -232,6 +243,7 @@ body {
     text-align: left;
     position: relative;
     /* border: 1px solid red; */
+    top: 30%;
 }
 
 .modal-content h1 {

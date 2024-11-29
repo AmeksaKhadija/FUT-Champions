@@ -12,7 +12,10 @@
   <body>
 
     <main class="players">
-      <button class="ajouterPlayer">ADD PLAYER</button>
+      <div class="d-flex justify-content-between">
+        <button class="precedant"><a href="index.html">RETOUR</a></button>
+        <button class="ajouterPlayer">ADD PLAYER</button>
+      </div>
 
       <div class="players-main">
         <div class="players-all" id="players-all">
@@ -27,14 +30,6 @@
         <span class="close-button" id="closeModal">&times;</span>
         <h1>Add Player</h1>
         <form id="addPlayerForm" onsubmit="return validateForm()">
-          <div class="form-group">
-            <label for="playerName">Player Name</label>
-            <input type="text" id="playerName">
-          </div>
-          <div class="form-group">
-            <label for="photo">Image URL</label>
-            <input type="text" id="photo">
-          </div>
           <div class="form-group">
             <label for="name">Position</label>
             <select name="positions" id="position">
@@ -52,6 +47,14 @@
               <option value="CF">CF</option>
               <option value="ST">ST</option>
             </select>
+          </div>
+          <div class="form-group">
+            <label for="playerName">Player Name</label>
+            <input type="text" id="playerName">
+          </div>
+          <div class="form-group">
+            <label for="photo">Image URL</label>
+            <input type="text" id="photo">
           </div>
           <div class="form-group">
             <label for="nationality">Nationality</label>
@@ -92,6 +95,35 @@
           <div class="form-group">
             <label for="defending">Defending</label>
             <input type="text" id="defending" >
+          </div>
+          <div class="form-group">
+            <label for="physical">Physical</label>
+            <input type="text" id="physical" >
+          </div>
+          <!-- GK -->
+          <div class="form-group">
+            <label for="diving">Diving</label>
+            <input type="text" id="diving" >
+          </div>
+          <div class="form-group">
+            <label for="handling">Handling</label>
+            <input type="text" id="handling" >
+          </div>
+          <div class="form-group">
+            <label for="kicking">Kicking</label>
+            <input type="text" id="kicking" >
+          </div>
+          <div class="form-group">
+            <label for="reflexes">Reflexes</label>
+            <input type="text" id="reflexes" >
+          </div>
+          <div class="form-group">
+            <label for="speed">Speed</label>
+            <input type="text" id="speed" >
+          </div>
+          <div class="form-group">
+            <label for="positioning">Positioning</label>
+            <input type="text" id="positioning" >
           </div>
           <div class="form-group">
             <label for="physical">Physical</label>

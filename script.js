@@ -213,6 +213,7 @@ const addPlayerButton = document.querySelector('.ajouterPlayer');
 const modal = document.getElementById('customModal');
 const closeModalButton = document.getElementById('closeModal');
 const addPlayerForm = document.getElementById('addPlayerForm');
+const positionInput = document.getElementById('position');
 const playersAll = document.getElementById('players-all');
 
 addPlayerButton.addEventListener('click', () => {
@@ -228,19 +229,63 @@ window.addEventListener('click', (event) => {
         modal.style.display = 'none';
     }
 });
+// js du postion if == GK ou non
+positionInput.addEventListener('change', function () {
+    if (positionInput.value === 'GK') {
+        changeToGKFields();
+    } else {
+        resetToPlayerFields();
+    }
+});
 
+function changeToGKFields() {
+    // Cacher les champs pour les joueurs de champ
+    document.getElementById('pace').parentElement.style.display = 'none';
+    document.getElementById('shooting').parentElement.style.display = 'none';
+    document.getElementById('passing').parentElement.style.display = 'none';
+    document.getElementById('dribbling').parentElement.style.display = 'none';
+    document.getElementById('defending').parentElement.style.display = 'none';
+    document.getElementById('physical').parentElement.style.display = 'none';
+
+    // Afficher les champs pour les gardiens (GK)
+    document.getElementById('diving').parentElement.style.display = 'block';
+    document.getElementById('handling').parentElement.style.display = 'block';
+    document.getElementById('kicking').parentElement.style.display = 'block';
+    document.getElementById('reflexes').parentElement.style.display = 'block';
+    document.getElementById('speed').parentElement.style.display = 'block';
+    document.getElementById('positioning').parentElement.style.display = 'block';
+}
+
+
+function resetToPlayerFields() {
+    document.getElementById('pace').parentElement.style.display = 'block';
+    document.getElementById('shooting').parentElement.style.display = 'block';
+    document.getElementById('passing').parentElement.style.display = 'block';
+    document.getElementById('dribbling').parentElement.style.display = 'block';
+    document.getElementById('defending').parentElement.style.display = 'block';
+    document.getElementById('physical').parentElement.style.display = 'block';
+
+    console.log("test");
+
+    document.getElementById('diving').parentElement.style.display = 'none';
+    document.getElementById('handling').parentElement.style.display = 'none';
+    document.getElementById('kicking').parentElement.style.display = 'none';
+    document.getElementById('reflexes').parentElement.style.display = 'none';
+    document.getElementById('speed').parentElement.style.display = 'none';
+    document.getElementById('positioning').parentElement.style.display = 'none';
+}
 // Ajoute un joueur
 addPlayerForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     if (!validateForm()) {
-        return; // Stop if the validation fails
+        return;
     }
 
     const player = {
+        position: document.getElementById('position').value,
         name: document.getElementById('playerName').value,
         photo: document.getElementById('photo').value,
-        position: document.getElementById('position').value,
         nationality: document.getElementById('nationality').value,
         club: document.getElementById('club').value,
         logo: document.getElementById('logo').value,
@@ -315,102 +360,6 @@ addPlayerForm.addEventListener('submit', (event) => {
 });
 
 
-
-// function validateForm() {
-//     const namePlayer = document.getElementById('playerName').value.trim();
-//     const photoPlayer = document.getElementById('photo').value.trim();
-//     const positionPlayer = document.getElementById('position').value.trim();
-//     const nationalityPlayer = document.getElementById('nationality').value.trim();
-//     const clubPlayer = document.getElementById('club').value.trim();
-//     const logoPlayer = document.getElementById('logo').value.trim();
-//     const ratingPlayer = document.getElementById('rating').value.trim();
-//     const pacePlayer = document.getElementById('pace').value.trim();
-//     const shootingPlayer = document.getElementById('shooting').value.trim();
-//     const passingPlayer = document.getElementById('passing').value.trim();
-//     const dribblingPlayer = document.getElementById('dribbling').value.trim();
-//     const defendingPlayer = document.getElementById('defending').value.trim();
-//     const physicalPlayer = document.getElementById('physical').value.trim();
-//     const flagPlayer = document.getElementById('flag').value.trim();
-
-//     const nameRegex = /^[a-zA-ZÀ-ÿ\s-]{2,30}$/;
-//     const photoRegex = /\/{2}.+?\.(jpg|png|gif)/;
-//     const positionRegex = /^[A-Z]{2}$/;
-//     const numberRegex = /^[0-9]{2}$/;
-
-//     if (!namePlayer.match(nameRegex)) {
-//         document.getElementById('message').textContent = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!photoPlayer.match(photoRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!positionPlayer.match(positionRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!nationalityPlayer.match(nameRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!clubPlayer.match(nameRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!logoPlayer.match(photoRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!ratingPlayer.match(numberRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!pacePlayer.match(numberRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!shootingPlayer.match(numberRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!passingPlayer.match(numberRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!dribblingPlayer.match(numberRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!defendingPlayer.match(numberRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!physicalPlayer.match(numberRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     if (!flagPlayer.match(photoRegex)) {
-//         messageErreur = "Veuillez essayez une autre fois";
-//         return false;
-//     }
-
-//     document.getElementById('message').textContent = "";
-//     return true;
-// }
-
 function validateForm() {
     const namePlayer = document.getElementById('playerName').value.trim();
     const photoPlayer = document.getElementById('photo').value.trim();
@@ -464,27 +413,22 @@ function validateForm() {
         document.getElementById('message').textContent = "pace invalide.";
         return false;
     }
-
     if (!shootingPlayer.match(numberRegex)) {
         document.getElementById('message').textContent = "Shooting invalide.";
         return false;
     }
-
     if (!passingPlayer.match(numberRegex)) {
         document.getElementById('message').textContent = "Passing invalide.";
         return false;
     }
-
     if (!dribblingPlayer.match(numberRegex)) {
         document.getElementById('message').textContent = "Dribbling invalide.";
         return false;
     }
-
     if (!defendingPlayer.match(numberRegex)) {
         document.getElementById('message').textContent = "Defending invalide.";
         return false;
     }
-
     if (!physicalPlayer.match(numberRegex)) {
         document.getElementById('message').textContent = "Physical invalide.";
         return false;
