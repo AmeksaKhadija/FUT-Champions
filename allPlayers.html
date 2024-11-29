@@ -1,30 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Players</title>
     <link rel="shortcut icon" href="assets/game.png" type="image/x-icon">
-    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <link rel="stylesheet" href="./src/assets/player.css">
-</head>
+  </head>
 
-<body>
-  
+  <body>
+
     <main class="players">
-      <button class="ajouterPlayer" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD PLAYER</button>
+      <button class="ajouterPlayer">ADD PLAYER</button>
 
-        <div class="players-main">
-            <div class="players-all" id="players-all">
-              <!--  -->
-            </div>
-
-
-    
+      <div class="players-main">
+        <div class="players-all" id="players-all">
+          <!-- Les joueurs ajoutés seront affichés ici -->
         </div>
+      </div>
     </main>
+
+    <!-- Modal -->
+    <div class="custom-modal" id="customModal">
+      <div class="modal-content">
+        <span class="close-button" id="closeModal">&times;</span>
+        <h1>Add Player</h1>
+        <form id="addPlayerForm">
+          <div class="form-group">
+            <label for="playerName">Player Name</label>
+            <input type="text" id="playerName">
+          </div>
+          <div class="form-group">
+            <label for="photo">Image URL</label>
+            <input type="text" id="photo">
+          </div>
+          <div class="form-group">
+            <label for="name">Position</label>
+            <select name="positions" id="position">
+              <option disabled selected value>Select a position</option>
+              <option value="GK">GK</option>
+              <option value="RB">RB</option>
+              <option value="CB">CB</option>
+              <option value="CDM">CDM</option>
+              <option value="CM">CM</option>
+              <option value="CAM">CAM</option>
+              <option value="RM">RM</option>
+              <option value="LM">LM</option>
+              <option value="RW">RW</option>
+              <option value="LW">LW</option>
+              <option value="CF">CF</option>
+              <option value="ST">ST</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="nationality">Nationality</label>
+            <input type="text" id="flag" >
+          </div>
+          <div class="form-group">
+            <label for="club">Club</label>
+            <input type="text" id="club" >
+          </div>
+          <div class="form-group">
+            <label for="logo">Club Logo</label>
+            <input type="text" id="logo" >
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating</label>
+            <input type="text" id="rating" >
+          </div>
+          <div class="form-group">
+            <label for="pace">Pace</label>
+            <input type="text" id="pace" >
+          </div>
+          <div class="form-group">
+            <label for="shooting">Shooting</label>
+            <input type="text" id="shooting" >
+          </div>
+          <div class="form-group">
+            <label for="passing">Passing</label>
+            <input type="text" id="passing" >
+          </div>
+          <div class="form-group">
+            <label for="dribbling">Dribbling</label>
+            <input type="text" id="dribbling" >
+          </div>
+          <div class="form-group">
+            <label for="defending">Defending</label>
+            <input type="text" id="defending" >
+          </div>
+          <div class="form-group">
+            <label for="physical">Physical</label>
+            <input type="text" id="physical" >
+          </div>
+          <button type="submit" class="submit-button">Add Player</button>
+        </form>
+      </div>
+    </div>
+
     <script src="script.js"></script>
-</body>
+  </body>
 
 </html>

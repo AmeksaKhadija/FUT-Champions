@@ -206,3 +206,56 @@ function createDiv(players) {
         allPlayers.appendChild(element);
     });
 }
+
+
+// Sélectionne les éléments
+const addPlayerButton = document.querySelector('.ajouterPlayer');
+const modal = document.getElementById('customModal');
+const closeModalButton = document.getElementById('closeModal');
+const addPlayerForm = document.getElementById('addPlayerForm');
+const playersAll = document.getElementById('players-all');
+
+// Ouvre le modal
+addPlayerButton.addEventListener('click', () => {
+    modal.style.display = 'flex';
+});
+
+// Ferme le modal
+closeModalButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Ferme le modal lorsqu'on clique en dehors
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Ajoute un joueur
+addPlayerForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Empêche le rechargement de la page
+
+    // Récupère les données du formulaire
+    const playerName = document.getElementById('playerName').value;
+    const playerAge = document.getElementById('playerAge').value;
+    const playerPosition = document.getElementById('playerPosition').value;
+
+    // Crée une carte pour le joueur
+    const playerCard = document.createElement('div');
+    playerCard.className = 'player-card';
+    playerCard.innerHTML = `
+        <h3>${playerName}</h3>
+        <p>Age: ${playerAge}</p>
+        <p>Position: ${playerPosition}</p>
+    `;
+
+    // Ajoute la carte à la liste
+    playersAll.appendChild(playerCard);
+
+    // Réinitialise le formulaire
+    addPlayerForm.reset();
+
+    // Ferme le modal
+    modal.style.display = 'none';
+});
