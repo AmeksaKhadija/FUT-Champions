@@ -392,7 +392,7 @@ function validateForm() {
     const nameRegex = /^[a-zA-ZÀ-ÿ\s-]{2,30}$/;
     const photoRegex = /^https?:\/\/.+\.(jpg|png|gif)$/;
     const positionRegex = /^[A-Z]{2,3}$/;
-    const numberRegex = /^\d+$/;
+    const numberRegex = /^[0-9]{1,2}$/;
 
 
     if (positionInput.value === 'GK') {
