@@ -229,6 +229,9 @@ window.addEventListener('click', (event) => {
         modal.style.display = 'none';
     }
 });
+
+
+
 // js du postion if == GK ou non
 positionInput.addEventListener('change', function () {
     if (positionInput.value === 'GK') {
@@ -255,8 +258,6 @@ function changeToGKFields() {
     document.getElementById('speed').parentElement.style.display = 'block';
     document.getElementById('positioning').parentElement.style.display = 'block';
 }
-
-
 function resetToPlayerFields() {
     document.getElementById('pace').parentElement.style.display = 'block';
     document.getElementById('shooting').parentElement.style.display = 'block';
@@ -265,7 +266,7 @@ function resetToPlayerFields() {
     document.getElementById('defending').parentElement.style.display = 'block';
     document.getElementById('physical').parentElement.style.display = 'block';
 
-    console.log("test");
+    // console.log("test");
 
     document.getElementById('diving').parentElement.style.display = 'none';
     document.getElementById('handling').parentElement.style.display = 'none';
@@ -296,7 +297,13 @@ addPlayerForm.addEventListener('submit', (event) => {
         dribbling: document.getElementById('dribbling').value,
         defending: document.getElementById('defending').value,
         physical: document.getElementById('physical').value,
-        flag: document.getElementById('flag').value
+        flag: document.getElementById('flag').value,
+        diving: document.getElementById('diving').value,
+        handling: document.getElementById('handling').value,
+        kicking: document.getElementById('kicking').value,
+        reflexes: document.getElementById('reflexes').value,
+        speed: document.getElementById('speed').value,
+        positioning: document.getElementById('positioning').value
     };
 
 
@@ -359,7 +366,6 @@ addPlayerForm.addEventListener('submit', (event) => {
     modal.style.display = 'none';
 });
 
-
 function validateForm() {
     const namePlayer = document.getElementById('playerName').value.trim();
     const photoPlayer = document.getElementById('photo').value.trim();
@@ -375,70 +381,135 @@ function validateForm() {
     const defendingPlayer = document.getElementById('defending').value.trim();
     const physicalPlayer = document.getElementById('physical').value.trim();
     const flagPlayer = document.getElementById('flag').value.trim();
+    const divingPlayer = document.getElementById('diving').value.trim();
+    const handlingPlayer = document.getElementById('handling').value.trim();
+    const kickingPlayer = document.getElementById('kicking').value.trim();
+    const reflexesPlayer = document.getElementById('reflexes').value.trim();
+    const speedPlayer = document.getElementById('speed').value.trim();
+    const positioningPlayer = document.getElementById('positioning').value.trim();
+
 
     const nameRegex = /^[a-zA-ZÀ-ÿ\s-]{2,30}$/;
     const photoRegex = /^https?:\/\/.+\.(jpg|png|gif)$/;
-    const positionRegex = /^[A-Z]{2}$/;
-    const numberRegex = /^[0-9]{1,2}$/;
+    const positionRegex = /^[A-Z]{2,3}$/;
+    const numberRegex = /^\d+$/;
 
-    if (!namePlayer.match(nameRegex)) {
-        document.getElementById('message').textContent = "Name invalide.";
-        return false;
-    }
-    if (!photoPlayer.match(photoRegex)) {
-        document.getElementById('message').textContent = "L'URL de la photo est invalide.";
-        return false;
-    }
-    if (!positionPlayer.match(positionRegex)) {
-        document.getElementById('message').textContent = "Position  invalide.";
-        return false;
-    }
-    if (!nationalityPlayer.match(nameRegex)) {
-        document.getElementById('message').textContent = "Nationalité invalide.";
-        return false;
-    }
-    if (!clubPlayer.match(nameRegex)) {
-        document.getElementById('message').textContent = "Le club est invalide.";
-        return false;
-    }
-    if (!logoPlayer.match(photoRegex)) {
-        document.getElementById('message').textContent = "L'URL du logo est invalide.";
-        return false;
-    }
-    if (!ratingPlayer.match(numberRegex)) {
-        document.getElementById('message').textContent = "Rating invalide.";
-        return false;
-    }
-    if (!pacePlayer.match(numberRegex)) {
-        document.getElementById('message').textContent = "pace invalide.";
-        return false;
-    }
-    if (!shootingPlayer.match(numberRegex)) {
-        document.getElementById('message').textContent = "Shooting invalide.";
-        return false;
-    }
-    if (!passingPlayer.match(numberRegex)) {
-        document.getElementById('message').textContent = "Passing invalide.";
-        return false;
-    }
-    if (!dribblingPlayer.match(numberRegex)) {
-        document.getElementById('message').textContent = "Dribbling invalide.";
-        return false;
-    }
-    if (!defendingPlayer.match(numberRegex)) {
-        document.getElementById('message').textContent = "Defending invalide.";
-        return false;
-    }
-    if (!physicalPlayer.match(numberRegex)) {
-        document.getElementById('message').textContent = "Physical invalide.";
-        return false;
-    }
 
-    if (!flagPlayer.match(photoRegex)) {
-        document.getElementById('message').textContent = "L'URL du flag est invalide.";
-        return false;
-    }
+    if (positionInput.value === 'GK') {
+        if (!divingPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Diving invalid.";
+            return false;
+        }
+        if (!handlingPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Handling invalid.";
+            return false;
+        }
+        if (!kickingPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Kicking invalid.";
+            return false;
+        }
+        if (!reflexesPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Reflexes nvalid.";
+            return false;
+        }
+        if (!speedPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Speed invalid.";
+            return false;
+        }
+        if (!positioningPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Positioning invalid.";
+            return false;
+        }
+        if (!ratingPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Rating invalide.";
+            return false;
+        }
+        document.getElementById('message').textContent = "";
+        return true;
 
-    document.getElementById('message').textContent = "";
-    return true;
+    } else {
+        if (!namePlayer.match(nameRegex)) {
+            document.getElementById('message').textContent = "Name invalide.";
+            return false;
+        }
+        if (!photoPlayer.match(photoRegex)) {
+            document.getElementById('message').textContent = "L'URL de la photo est invalide.";
+            return false;
+        }
+        if (!positionPlayer.match(positionRegex)) {
+            document.getElementById('message').textContent = "Position  invalide.";
+            return false;
+        }
+        if (!nationalityPlayer.match(nameRegex)) {
+            document.getElementById('message').textContent = "Nationalité invalide.";
+            return false;
+        }
+        if (!clubPlayer.match(nameRegex)) {
+            document.getElementById('message').textContent = "Le club est invalide.";
+            return false;
+        }
+        if (!logoPlayer.match(photoRegex)) {
+            document.getElementById('message').textContent = "L'URL du logo est invalide.";
+            return false;
+        }
+        if (!ratingPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Rating invalide.";
+            return false;
+        }
+        if (!pacePlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "pace invalide.";
+            return false;
+        }
+        if (!shootingPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Shooting invalide.";
+            return false;
+        }
+        if (!passingPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Passing invalide.";
+            return false;
+        }
+        if (!dribblingPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Dribbling invalide.";
+            return false;
+        }
+        if (!defendingPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Defending invalide.";
+            return false;
+        }
+        if (!physicalPlayer.match(numberRegex)) {
+            document.getElementById('message').textContent = "Physical invalide.";
+            return false;
+        }
+        if (!flagPlayer.match(photoRegex)) {
+            document.getElementById('message').textContent = "L'URL du flag est invalide.";
+            return false;
+        }
+        // if(!divingPlayer.match(numberRegex)){
+        //     document.getElementById('message').textContent = "Diving invalid.";
+        //     return false;
+        // }
+        // if(!handlingPlayer.match(numberRegex)){
+        //     document.getElementById('message').textContent = "Handling invalid.";
+        //     return false;
+        // }
+        // if(!kickingPlayer.match(numberRegex)){
+        //     document.getElementById('message').textContent = "Kicking invalid.";
+        //     return false;
+        // }
+        // if(!reflexesPlayer.match(numberRegex)){
+        //     document.getElementById('message').textContent = "Reflexes nvalid.";
+        //     return false;
+        // }
+        // if(!speedPlayer.match(numberRegex)){
+        //     document.getElementById('message').textContent = "Speed invalid.";
+        //     return false;
+        // }
+        // if(!positioningPlayer.match(numberRegex)){
+        //     document.getElementById('message').textContent = "Positioning invalid.";
+        //     return false;
+        // }
+
+        document.getElementById('message').textContent = "";
+        return true;
+    }
 }
