@@ -150,47 +150,22 @@ function selectPlayer(player, selectedPosition) {
         `;
     }
 
-    selectedPosition.innerHTML = `
-                        
-                            <div class="d-flex align-items:center justify-content-center">
-                                <span style="position: relative; left: 10%;margin-top: 20%;" style="color: rgb(99, 87, 53);">${player.rating} <span>${player.position}</span></span>
-                                <img src="${player.photo}" alt="${player.name}" style="width: 75px;">
-                            </div>
-                            <div style="font-size: 0.9rem; color: rgb(0, 0, 0);">${player.name}</div>
-                            <div class="player-details">
-                                <div class="stat-row">
-                                    <span class="stat-label">PAC</span>
-                                    <span class="stat-value">${player.pace}</span>
+
+     // Ajouter un événement click pour changer le joueur
+     let position = selectedPosition.querySelector("#selected-position").innerText.trim();
+
+     selectedPosition.addEventListener("click", () => {
+        selectedPosition.innerHTML = `
+                                <div class="player-icon">
+                                    <i id="addPlayer" data-bs-toggle="modal" data-bs-target="#playerModal" class="fa-solid fa-plus"></i>
                                 </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">SHO</span>
-                                    <span class="stat-value">${player.shooting}</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">PAS</span>
-                                    <span class="stat-value">${player.passing}</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">DRI</span>
-                                    <span class="stat-value">${player.dribbling}</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">DEF</span>
-                                    <span class="stat-value">${player.defending}</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">PHY</span>
-                                    <span class="stat-value">${player.physical}</span>
-                                </div>
-                            </div>
-                            <div class="player-flags">
-                                <img src="${player.flag}" alt="Argentina" class="flag">
-                                <img src="${player.logo}" alt="${player.club}" class="flag">
-                            </div>
-                             <h1 id="selected-position" style="font-size: 1.5rem; margin-top: 20px; display: flex; justify-content: center;">${player.position}</h1>
-                        
-                    `;
-   
+                                <h1 id="selected-position" style="font-size: 1.5rem; margin-top: 60px; display: flex; justify-content: center;">${position}</h1>
+                            `;
+        selectedPosition.classList.remove("player-content");
+        selectedPosition.classList.add("player");
+
+        // btnCloseModal.click();
+    });
 
     btnCloseModal.click();
 }
