@@ -66,6 +66,7 @@ function displayPlayers(players, selectedPosition) {
 function selectPlayer(player, selectedPosition) {
     selectedPosition.innerHTML = "";
 
+
     selectedPosition.classList.remove("player");
     selectedPosition.classList.add("player-content");
 
@@ -148,6 +149,23 @@ function selectPlayer(player, selectedPosition) {
             <h1 id="selected-position" style="font-size: 1.5rem; margin-top: 10px; display: flex; justify-content: center;">${player.position}</h1>
         `;
     }
+
+
+     // Ajouter un événement click pour changer le joueur
+     let position = selectedPosition.querySelector("#selected-position").innerText.trim();
+
+     selectedPosition.addEventListener("click", () => {
+        selectedPosition.innerHTML = `
+                                <div class="player-icon">
+                                    <i id="addPlayer" data-bs-toggle="modal" data-bs-target="#playerModal" class="fa-solid fa-plus"></i>
+                                </div>
+                                <h1 id="selected-position" style="font-size: 1.5rem; margin-top: 60px; display: flex; justify-content: center;">${position}</h1>
+                            `;
+        selectedPosition.classList.remove("player-content");
+        selectedPosition.classList.add("player");
+
+        // btnCloseModal.click();
+    });
 
     btnCloseModal.click();
 }
