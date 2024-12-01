@@ -29,6 +29,8 @@ async function CallAPI() {
 
 CallAPI();
 
+// arraye pour les joueurs selectionnés
+let selectedPlayers = [];
 
 function displayPlayers(players, selectedPosition) {
     const modalContent = document.querySelector("#players-list");
@@ -36,7 +38,7 @@ function displayPlayers(players, selectedPosition) {
 
     const position = selectedPosition.querySelector("#selected-position").innerText.trim();
 
-    const filteredPlayers = players.filter(player => player.position === position);
+    const filteredPlayers = players.filter(player => player.position === position && !selectedPlayers.includes(player.id));
 
     filteredPlayers.forEach(player => {
         const playerCard = document.createElement("div");
@@ -64,6 +66,8 @@ function displayPlayers(players, selectedPosition) {
 }
 
 function selectPlayer(player, selectedPosition) {
+    selectedPlayers.push(player.id);
+
     selectedPosition.innerHTML = "";
 
 
@@ -155,6 +159,8 @@ function selectPlayer(player, selectedPosition) {
      let position = selectedPosition.querySelector("#selected-position").innerText.trim();
 
      selectedPosition.addEventListener("click", () => {
+        selectedPlayers = selectedPlayers.filter(id => id !== player.id);
+
         selectedPosition.innerHTML = `
                                 <div class="player-icon">
                                     <i id="addPlayer" data-bs-toggle="modal" data-bs-target="#playerModal" class="fa-solid fa-plus"></i>
