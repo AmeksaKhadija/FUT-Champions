@@ -2,23 +2,23 @@ const btnCloseModal = document.getElementById('buttonClose');
 const allPlayers = document.getElementById("players-all");
 // console.log(allPlayers.innerHTML);
 
-let playersArray = JSON.parse(localStorage.getItem('players')) || [];
+const playersArray = JSON.parse(localStorage.getItem('players')) || [];
 
 
 async function CallAPI() {
-    let url = "players.json";
-    let fetcher = await fetch(url);
-    let json = await fetcher.json();
+    const url = "players.json";
+    const fetcher = await fetch(url);
+    const json = await fetcher.json();
 
-    console.log(json);
-    console.log(json.players[0]);
+    // console.log(json);
+    // console.log(json.players[0]);
 
-    let selectedPosition = document.querySelectorAll(".player");
+    const selectedPosition = document.querySelectorAll(".player");
     // console.log(selectedPosition);
 
     selectedPosition.forEach((selectedArea) => {
         selectedArea.addEventListener('click', () => {
-            console.log(selectedArea);
+            // console.log(selectedArea);
             displayPlayers(json.players, selectedArea);
 
         })
@@ -31,15 +31,15 @@ CallAPI();
 
 
 function displayPlayers(players, selectedPosition) {
-    let modalContent = document.querySelector("#players-list");
+    const modalContent = document.querySelector("#players-list");
     modalContent.innerHTML = "";
 
-    let position = selectedPosition.querySelector("#selected-position").innerText.trim();
+    const position = selectedPosition.querySelector("#selected-position").innerText.trim();
 
-    let filteredPlayers = players.filter(player => player.position === position);
+    const filteredPlayers = players.filter(player => player.position === position);
 
     filteredPlayers.forEach(player => {
-        let playerCard = document.createElement("div");
+        const playerCard = document.createElement("div");
         playerCard.classList.add("card", "m-2");
         playerCard.style.width = "150px";
 
@@ -153,12 +153,12 @@ function selectPlayer(player, selectedPosition) {
 }
 
 function createDiv(players) {
-    players.forEach(player => {
+    players.forEach((player,index) => {
         const element = document.createElement('div');
         element.classList.add("card-full");
 
         element.innerHTML = `
-            <img src="src/assets/img/badge_ballon_dor.webp" class="first-image" alt="">
+            <img src="src/assets/img/badge_ballon_dor.webp" onclick="editePlayer(${index})" class="first-image" alt="">
             <div class="card">
                 <div class="card-inner">
                     <div class="card-top">
@@ -205,10 +205,42 @@ function createDiv(players) {
         `;
 
         allPlayers.appendChild(element);
-    });
+});
 }
 
-
+function editePlayer(player,index){
+      // code pour modifier les info de joueur 
+    // console.log(document.querySelectorAll('.card-full'));
+    document.querySelectorAll('.card-full').forEach(card => {
+        card.addEventListener('click', function() {
+            
+            const modall = document.getElementById('customModal'); 
+            
+            document.getElementById('playerName').value = player.name;
+            document.getElementById('photo').value = player.photo;
+            document.getElementById('position').value = player.position;
+            document.getElementById('nationality').value = player.nationality;
+            document.getElementById('club').value = player.club;
+            document.getElementById('logo').value = player.logo;
+            document.getElementById('rating').value = player.rating;
+            document.getElementById('pace').value = player.pace;
+            document.getElementById('shooting').value = player.shooting;
+            document.getElementById('passing').value = player.passing;
+            document.getElementById('dribbling').value = player.dribbling;
+            document.getElementById('defending').value = player.defending;
+            document.getElementById('physical').value = player.physical;
+            document.getElementById('flag').value = player.flag;
+            document.getElementById('diving').value = player.diving;
+            document.getElementById('handling').value = player.handling;
+            document.getElementById('kicking').value = player.kicking;
+            document.getElementById('reflexes').value = player.reflexes;
+            document.getElementById('speed').value = player.speed;
+            document.getElementById('positioning').value = player.positioning;
+    
+            modall.style.display = 'block';
+        });
+    });
+}
 const addPlayerButton = document.querySelector('.ajouterPlayer');
 const modal = document.getElementById('customModal');
 const closeModalButton = document.getElementById('closeModal');
@@ -229,8 +261,6 @@ window.addEventListener('click', (event) => {
         modal.style.display = 'none';
     }
 });
-
-
 
 // js du postion if == GK ou non
 positionInput.addEventListener('change', function () {
@@ -309,6 +339,9 @@ addPlayerForm.addEventListener('submit', (event) => {
 
     const playerCard = document.createElement('div');
     playerCard.classList.add("card-full");
+    console.log(player,player.id);
+    
+    playerCard.setAttribute('data-id', player.id);
 
     playerCard.innerHTML = `
             <img src="src/assets/img/badge_ballon_dor.webp" class="first-image" alt="">
@@ -392,7 +425,7 @@ function validateForm() {
     const nameRegex = /^[a-zA-ZÀ-ÿ\s-]{2,30}$/;
     const photoRegex = /^https?:\/\/.+\.(jpg|png|gif)$/;
     const positionRegex = /^[A-Z]{2,3}$/;
-    const numberRegex = /^\d+$/;
+    const numberRegex = /^[0-9]{1,2}$/;
 
 
     if (positionInput.value === 'GK') {
@@ -484,30 +517,6 @@ function validateForm() {
             document.getElementById('message').textContent = "L'URL du flag est invalide.";
             return false;
         }
-        // if(!divingPlayer.match(numberRegex)){
-        //     document.getElementById('message').textContent = "Diving invalid.";
-        //     return false;
-        // }
-        // if(!handlingPlayer.match(numberRegex)){
-        //     document.getElementById('message').textContent = "Handling invalid.";
-        //     return false;
-        // }
-        // if(!kickingPlayer.match(numberRegex)){
-        //     document.getElementById('message').textContent = "Kicking invalid.";
-        //     return false;
-        // }
-        // if(!reflexesPlayer.match(numberRegex)){
-        //     document.getElementById('message').textContent = "Reflexes nvalid.";
-        //     return false;
-        // }
-        // if(!speedPlayer.match(numberRegex)){
-        //     document.getElementById('message').textContent = "Speed invalid.";
-        //     return false;
-        // }
-        // if(!positioningPlayer.match(numberRegex)){
-        //     document.getElementById('message').textContent = "Positioning invalid.";
-        //     return false;
-        // }
 
         document.getElementById('message').textContent = "";
         return true;
