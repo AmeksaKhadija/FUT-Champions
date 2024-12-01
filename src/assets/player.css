@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --main-color: #12f7d6;
+    --dark-color: #292f36;
+    --electric-blue: #0078FF;
+    --neon-purple: #A020F0;
+    --slate-gray: #2F4F4F;
+    --white-color: #FFFFFF;
+    --dark-c: #1A1A1A;
+    --soft-gray: #F5F5F5;
+    --white-smoke: #F8F8F8;
+    --deep-orange: #FF4500;
+    --bright-yellow: #FFD700;
+}
+
+* {
+    color: inherit;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    font-family: "Red Hat Display", sans-serif;
+    background-color: var(--dark-c);
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+hr {
+    border: 0;
+    border-top: 1px dotted #efefef;
+}
+
+
+
+/* ----------------- players list ------------------------- */
+
+.players {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 30px;
+}
+
+
+
+.players .players-main {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    padding: 30px;
+    width: 100%;
+}
+
+.players .players-main .players-all {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: var(--dark-color);
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px 0;
+}
+
+.players .players-main .players-filter {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 20px;
+    background-color: var(--dark-color);
+    padding: 20px;
+    min-width: fit-content;
+    border-radius: 10px;
+
+}
+
+/* ==============   Card   ============== */
+
+.card-full {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 312px;
+    position: relative;
+}
+
+.card-full image {
+    position: relative;
+    width: 200px;
+}
+
+.card {
+    color: var(--white-color);
+    position: absolute;
+    bottom: 13px;
+}
+
+.card .card-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.card .card-top {
+    display: flex;
+    color: #d3cca3;
+    justify-content: flex-start;
+    align-items: start;
+    width: 170px;
+}
+
+.card .card-top .info {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.card .card-top .info .position {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.card .card-top .image img {
+    width: 140px;
+}
+
+.card .card-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.card .card-bottom .name {
+    color: #d3cca3;
+}
+
+.card .card-bottom .stats ul {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.card .card-bottom .stats ul li {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.card .card-bottom .stats ul li span:first-child {
+    font-size: 8px;
+}
+
+
+.card .card-bottom .country-club {
+    display: flex;
+    margin-top: 9px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.card .country img,
+.card .club img {
+    width: 20px;
+}
+
+/* ----------------button ajouter player ---------------------------- */
+.ajouterPlayer{
+    background-color: rgb(74, 114, 114);
+    padding: 10px;
+    width: 200px;
+    border-radius: 3%;
+    transition: .4s ease;
+    
+}
+
+.ajouterPlayer:hover{
+    transform: translateY(-5px);
+}
+/* button de la page precedante */
+.precedant{
+    background-color: rgb(74, 114, 114);
+    padding: 10px;
+    width: 200px;
+    border-radius: 3%;
+    transition: .4s ease;
+}
+
+.precedant:hover{
+    transform: translateY(-5px);
+}
+/* modal de l'ajout  */
+
+/* Styles de base */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.players {
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Styles du modal */
+.custom-modal {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    width: 800px;
+    max-width: 90%;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    position: relative;
+    /* border: 1px solid red; */
+    top: 30%;
+}
+
+.modal-content h1 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.form-group {
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 15px; 
+    flex-direction: column;
+}
+
+.form-group label {
+    width: 100%; 
+}
+
+.form-group input {
+    flex: 1; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group select {
+    flex: 1; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.modal-content form {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+}
+
+.form-group:nth-child(odd) {
+    flex: 1 1 calc(50% - 10px); 
+}
+
+.form-group:nth-child(even) {
+    flex: 1 1 calc(50% - 10px); 
+}
+
+.submit-button {
+    width: 100%; 
+    margin-top: 20px;
+}
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+}
