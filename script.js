@@ -60,7 +60,7 @@ function selectPlayer(player, selectedPosition) {
     // let modalPlayer = document.getElementById('playerModal');
 
     selectedPosition.innerHTML = "";
-    
+
     selectedPosition.classList.remove("player");
     selectedPosition.classList.add("player-content");
 
@@ -104,6 +104,7 @@ function selectPlayer(player, selectedPosition) {
                              <h1 id="selected-position" style="font-size: 1.5rem; margin-top: 20px; display: flex; justify-content: center;">${player.position}</h1>
                         
                     `;
+   
 
     btnCloseModal.click();
 
